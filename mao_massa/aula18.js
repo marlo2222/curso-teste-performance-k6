@@ -6,10 +6,10 @@ import papaparse from 'https://jslib.k6.io/papaparse/5.1.1/index.js';
 export const options = {
     stages: [
         { duration: '5s', target: 5 },
-        { duration: '5s', target: 5 },
-        { duration: '2s', target: 50 },
-        { duration: '2s', target: 50 },
-        { duration: '5s', target: 0 },
+        //{ duration: '5s', target: 5 },
+        //{ duration: '2s', target: 50 },
+        //{ duration: '2s', target: 50 },
+      //  { duration: '5s', target: 0 },
     ],
     thresholds: {
         http_req_failed: ['rate < 0.01']
@@ -34,7 +34,7 @@ export default function () {
 
     check(res, {
         'sucesso login': (r) => r.status === 200,
-        ' token gerado': (r) => r.json('acess') !== ''
+        'token gerado': (r) => r.json('access') != ''
     });
 
     sleep(1)
