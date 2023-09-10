@@ -50,7 +50,7 @@ Nesta seção prática, você construirá testes de performance utilizando o que
 Aqui, você encontrará informações adicionais para ampliar seu conhecimento sobre k6 e testes de performance. As aulas são:
 
 - Aula 23: Gerando Relatórios de Saída com k6
-- Aula 24: Execução em Ambiente de Cloud: k6 Cloud
+- Aula 24: Execução em Ambiente de Cloud: Grafana Cloud K6
 - Aula 25: Execução em Ambiente de Cloud: AWS
 - Aula 26: Executando k6 com Github Actions
 - Aula 27: Teste de Desempenho em Aplicações Web - Parte 1
