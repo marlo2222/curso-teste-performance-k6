@@ -1,34 +1,28 @@
-import { group, check } from 'k6';
+import { check, group } from 'k6';
 import http from 'k6/http';
 
 export const options = {
-    vus: 1,
-    duration: '3s',
-    tags:{
-        name: 'meu-test'
-    },
-    thresholds:{
-        'http_req_duration{tipo:busca-todos}': ['p(95) < 500']
+    vus: 4,
+    duration: '5s',
+    thresholds: {
+        'http_req_duration{group:::requisição por id}': ['p(95) < 500']
     }
 }
 
-const id = 7;
-
-export default function () {
-    group('exemple post', function () {
-        const res = http.get(`https://test-api.k6.io/public/crocodiles/`, {
-            tags:{
-                tipo: "busca-todos"
-            }
-        });
-        check(res, {
-          'is status 200': (r) => r.status === 200,
+export default function(){
+    group('requisição todos os crocodilos', function(){
+        const response1 = http.get('https://test-api.k6.io/public/crocodiles/');
+        check(response1, {
+            'status code 200 get all': (r) => r.status === 200
         });
     });
-    group('exemple post id', function () {
-        const res2 =http.get(`https://test-api.k6.io/public/crocodiles/${id}`);
-        check(res2, {
-            'is status 200': (r) => r.status === 200,
-          });
+    
+   
+    group('requisição por id', function(){
+        const response2 = http.get('https://test-api.k6.io/public/crocodiles/1/');
+        check(response2, {
+            'status code 200 get id': (r) => r.status === 200
+        }); 
     });
+    
 }

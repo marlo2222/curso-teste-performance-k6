@@ -1,15 +1,20 @@
-//default
 import http from 'k6/http';
-//remoto
-import { AWSConfig, S3Client } from 'https://jslib.k6.io/aws/0.4.0/s3.js';
-//local
-import runTest from './exemplo.js'
+import { check }  from 'k6';
 
-export default function() {
-  let res = http.get("http://test.k6.io");
-  sleep(1);
+export const options = {
+    vus: 1,
+    duration: '3s',
+    thresholds: {
+        http_req_failed: ['rate < 0.01'],
+        http_req_duration: [{threshold: 'p(95) < 200', abortOnFail: true}],
+        checks: ['rate > 0.99']
+    }
+}
 
-  check(res, {
-      "status is 200": (r) => r.status === 200,
-     });
+export default function () {
+    const res = http.get('http://test.k6.io/')
+
+    check(res, {
+        'status code é 200': (r) => r.status === 201
+    });
 }

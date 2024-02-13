@@ -1,28 +1,15 @@
-import { check, group } from 'k6';
+//default
 import http from 'k6/http';
+//remoto
+import { AWSConfig, S3Client } from 'https://jslib.k6.io/aws/0.4.0/s3.js';
+//local
+import runTest from './exemplo.js'
 
-export const options = {
-    vus: 4,
-    duration: '5s',
-    thresholds: {
-        'http_req_duration{group:::requisição por id}': ['p(95) < 500']
-    }
-}
+export default function() {
+  let res = http.get("http://test.k6.io");
+  sleep(1);
 
-export default function(){
-    group('requisição todos os crocodilos', function(){
-        const response1 = http.get('https://test-api.k6.io/public/crocodiles/');
-        check(response1, {
-            'status code 200 get all': (r) => r.status === 200
-        });
-    });
-    
-   
-    group('requisição por id', function(){
-        const response2 = http.get('https://test-api.k6.io/public/crocodiles/1/');
-        check(response2, {
-            'status code 200 get id': (r) => r.status === 200
-        }); 
-    });
-    
+  check(res, {
+      "status is 200": (r) => r.status === 200,
+     });
 }
