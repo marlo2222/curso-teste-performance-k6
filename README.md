@@ -36,9 +36,9 @@ Esta seção aprofunda os conceitos importantes relacionados ao k6. As aulas inc
 - Aula 17: Conhecendo Groups
 - Aula 18: Conhecendo Tags
 - Aula 19: Utilizando variaveis de ambiente
-- Aula 20: Entendendo Scenarios = Parte 1
-- Aula 21: Entendendo Scenarios = Parte 2
-- Aula 22: Entendendo Scenarios = Parte 3
+- Aula 20: Entendendo Scenarios - Parte 1
+- Aula 21: Entendendo Scenarios - Parte 2
+- Aula 22: Entendendo Scenarios - Parte 3
 
 ## Seção 4: Mão na Massa
 
